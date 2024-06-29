@@ -1,0 +1,11 @@
+{
+  "files": ["./backend/src/grpc/proto/vulnerability.proto"],
+  "outDir": "./backend/src/grpc/generated",
+  "options": {
+    "env": "node",
+    "outputClientImpl": "grpc-js",
+    "outputServices": "grpc-js",
+    "useOptionals": "all",
+    "esModuleInterop": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "alpha-security-backend",
+  "version": "1.0.0",
+  "description": "Backend for AlphaSecurity, a vulnerability report management system",
+  "main": "src/grpc/server.ts",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc && npm run copy-proto",
+    "copy-proto": "mkdir -p dist/proto && cp src/grpc/proto/vulnerability.proto dist/proto/",
+    "start": "npm run copy-proto && nodemon dist/grpc/server.js",
+    "dev": "ts-node-dev src/grpc/server.ts",
+    "generate:types": "./node_modules/.bin/proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/grpc/generated src/grpc/proto/vulnerability.proto",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:generate": "prisma generate"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.4.5",
+    "@grpc/proto-loader": "^0.6.4",
+    "@prisma/client": "^5.16.1",
+    "dotenv": "^10.0.0",
+    "prisma": "^5.16.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.9",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
